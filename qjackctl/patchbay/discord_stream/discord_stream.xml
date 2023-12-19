@@ -1,62 +1,68 @@
 <!DOCTYPE patchbay>
-<patchbay version="0.9.6" name="discord_stream">
+<patchbay name="discord_stream" version="0.9.6">
  <output-sockets>
-  <socket client="system" type="jack-audio" name="system" exclusive="off">
+  <socket type="jack-audio" name="system" exclusive="off" client="system">
    <plug>capture_1</plug>
    <plug>capture_2</plug>
   </socket>
-  <socket client="discord_sink" type="jack-audio" name="discord_sink" exclusive="off">
+  <socket type="jack-audio" name="discord_sink" exclusive="off" client="discord_sink">
    <plug>front\-left</plug>
    <plug>front\-right</plug>
   </socket>
-  <socket client="blackhole_sink" type="jack-audio" name="blackhole_sink" exclusive="off">
+  <socket type="jack-audio" name="blackhole_sink" exclusive="off" client="blackhole_sink">
    <plug>front\-left</plug>
    <plug>front\-right</plug>
   </socket>
-  <socket client="REAPER" type="jack-audio" name="REAPER" exclusive="off">
+  <socket type="jack-audio" name="REAPER" exclusive="off" client="REAPER">
    <plug>out1</plug>
    <plug>out2</plug>
    <plug>out3</plug>
    <plug>out4</plug>
   </socket>
-  <socket client="REAPER" type="jack-audio" name="REAPER 2" exclusive="off">
+  <socket type="jack-audio" name="REAPER 2" exclusive="off" client="REAPER">
    <plug>out3</plug>
    <plug>out4</plug>
   </socket>
-  <socket client="Midi\ Through" type="alsa-midi" name="Midi Through" exclusive="off">
+  <socket type="alsa-midi" name="Midi Through" exclusive="off" client="Midi\ Through">
    <plug>Midi\ Through\ Port\-0</plug>
   </socket>
  </output-sockets>
  <input-sockets>
-  <socket client="system" type="jack-audio" name="system" exclusive="off">
+  <socket type="jack-audio" name="system" exclusive="off" client="system">
    <plug>playback_1</plug>
    <plug>playback_2</plug>
   </socket>
-  <socket client="discord_source" type="jack-audio" name="discord_source" exclusive="off">
+  <socket type="jack-audio" name="discord_source" exclusive="off" client="discord_source">
    <plug>front\-left</plug>
    <plug>front\-right</plug>
   </socket>
-  <socket client="REAPER" type="jack-audio" name="REAPER" exclusive="off">
+  <socket type="jack-audio" name="REAPER" exclusive="off" client="REAPER">
    <plug>in1</plug>
    <plug>in2</plug>
    <plug>in3</plug>
    <plug>in4</plug>
+   <plug>in5</plug>
+   <plug>in6</plug>
   </socket>
-  <socket client="REAPER" type="jack-audio" name="REAPER 2" exclusive="off">
+  <socket type="jack-audio" name="REAPER 2" exclusive="off" client="REAPER">
+   <plug>in5</plug>
+   <plug>in6</plug>
+  </socket>
+  <socket type="jack-audio" name="REAPER 3" exclusive="off" client="REAPER">
    <plug>in3</plug>
    <plug>in4</plug>
   </socket>
-  <socket client="Midi\ Through" type="alsa-midi" name="Midi Through" exclusive="off">
+  <socket type="alsa-midi" name="Midi Through" exclusive="off" client="Midi\ Through">
    <plug>Midi\ Through\ Port\-0</plug>
   </socket>
  </input-sockets>
  <slots/>
  <cables>
-  <cable type="jack-audio" input="REAPER" output="system"/>
-  <cable type="jack-audio" input="system" output="discord_sink"/>
-  <cable type="jack-audio" input="REAPER 2" output="blackhole_sink"/>
-  <cable type="jack-audio" input="system" output="REAPER"/>
-  <cable type="jack-audio" input="discord_source" output="REAPER 2"/>
+  <cable type="jack-audio" output="system" input="REAPER"/>
+  <cable type="jack-audio" output="discord_sink" input="REAPER 2"/>
+  <cable type="jack-audio" output="blackhole_sink" input="REAPER 3"/>
+  <cable type="jack-audio" output="REAPER" input="system"/>
+  <cable type="jack-audio" output="REAPER 2" input="discord_source"/>
  </cables>
 </patchbay>
 
